@@ -3,16 +3,16 @@
 
 {% block content %}
 <script type="text/javascript"
-function set_openid(openid,pr)
+function set_openid(openid, pr)
         {
-        u = openid.serch('<username>')
+        u = openid.search('<username>')
             if(u !=-1) {
                 //openid requires username
                 user = prompt('Enter your' + pr + 'username:')
-                openid = openid.substr(0,u) + user
+                openid = openid.substr(0, u) + user
             }
         form = document.forms['login'];
-        form.elements['openid'].vlaue = openid
+        form.elements['openid'].value = openid
         }
 </scipt>
     <h1>Sign In</h1>
@@ -22,11 +22,10 @@ function set_openid(openid,pr)
             Please enter your OpenID, or select from below:<br>
             {{ form.openid(size=80) }}<br>
             {% for error in form.openid.errors %}
-                <span style="color: red;">[{{ error  }}]</span>
+                <span style="color: red;">[{{ error }}]</span>
             {% endfor %}<br>
             |{% for pr in providers %}
-            <a href="javascript:set_openid('{{ pr.url }}','{{ pr.name }}');">
-{{pr.name}}</a>|
+            <a href="javascript:set_openid('{{ pr.url }}', '{{ pr.name }}');">{{pr.name}}</a>|
     {% endfor %}
         </p>
         <p>{{ form.remember_me  }} Remember Me </p>
